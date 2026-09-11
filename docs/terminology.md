@@ -12,3 +12,5 @@
 | Supersession | Explicit replacement of an older assertion |
 | Constitution | Human-authored interpretation rules |
 | Soul | Unstructured human-authored context |
+| Trust Covenant | A human-declared ethical-use condition set defined by HCP-0002 |
+| Trust response | A receiving system's separate acknowledgement and compatibility report |

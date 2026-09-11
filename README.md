@@ -25,6 +25,7 @@ The first implementation is deliberately boring where it should be boring:
 - **Explicit authority** for human-authored facts and beliefs
 - **Separate AI observations** that require human review
 - **Selective disclosure** instead of "send everything"
+- **Explicit trust conditions** and honest compatibility disclosure
 
 HCP is not intended to become another proprietary memory silo. The protocol should remain useful even if the company or project behind it disappears.
 
@@ -214,7 +215,8 @@ human-context/
 ├── CHANGELOG.md
 │
 ├── hcp-spec/
-│   └── HCP-0001.md
+│   ├── HCP-0001.md
+│   └── HCP-0002.md
 │
 ├── codex-schema/
 │   ├── manifest.schema.json
@@ -224,6 +226,7 @@ human-context/
 ├── templates/
 │   ├── manifest.yaml
 │   ├── constitution.md
+│   ├── trust-covenant.md
 │   ├── soul.md
 │   └── assertions/
 │       ├── fact.md
@@ -235,6 +238,7 @@ human-context/
 │       └── observation.md
 │
 ├── examples/
+│   ├── context-bundle.yaml
 │   └── minimal-codex/
 │       ├── manifest.yaml
 │       ├── constitution.md
@@ -273,6 +277,23 @@ The initial implementation target is a local-first CLI and library capable of:
 8. reviewing and accepting/rejecting observations
 9. preserving provenance and temporal history
 10. eventually connecting to AI systems through adapters/MCP
+
+## Trust and ethical use
+
+HCP-0002, the [Human–AI Trust Covenant](hcp-spec/HCP-0002.md), makes the
+conditions of context sharing explicit. Every Context Bundle declares its
+conditions, such as prohibitions on training, resale, profiling, manipulation,
+or unauthorized disclosure, alongside its permitted purpose and expiration.
+
+Those declarations do not override a provider's Terms of Service, technical
+controls, or applicable law. An HCP-aware system must disclose when it cannot
+honor a requested condition; it must not turn an incompatible Covenant into a
+false assurance.
+
+Every Context Bundle carries the human's `trust.status: declared` conditions.
+A receiver may add a separate `trust_response` containing its acknowledgement,
+compatibility result, guarantees, and limitations; it must never rewrite the
+human declaration to imply consent or compliance.
 
 ## Design principles
 
@@ -388,6 +409,7 @@ The person's context should not have to compete with them.
 ### Phase 0 — Foundation
 
 - [x] Foundational RFC
+- [x] Human–AI Trust Covenant
 - [x] Initial repository structure
 - [ ] Formal schemas
 - [ ] Validation rules

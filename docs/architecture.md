@@ -13,6 +13,7 @@ Application services
    ├── repository/index
    ├── observation engine
    ├── bundle generator
+   ├── trust handshake evaluator
    └── policy/permission engine
              │
              ▼
@@ -32,3 +33,12 @@ Adapters sit outside the core:
 ```
 
 The core must remain usable without any provider integration.
+
+An adapter that receives a Context Bundle with declared trust conditions must
+report whether its provider and infrastructure can honor those conditions. It
+must not report incompatible conditions as guaranteed.
+
+The bundle's `trust` object is a human declaration and remains
+`status: declared`. An adapter records its own result separately as
+`trust_response`; it must not mutate the declaration to make an
+acknowledgement or compatibility result appear human-authorized.

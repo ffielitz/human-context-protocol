@@ -1,0 +1,32 @@
+# An illustrative declaration before it is delivered to a receiving system.
+# It intentionally contains no personal context.
+hcp: "0.1"
+bundle_id: "bundle.example.personal-assistance.20260911"
+codex_id: "codex.example.minimal"
+purpose: "Personal assistance"
+created: "2026-09-11T12:00:00Z"
+expires: "2026-09-11T13:00:00Z"
+scopes:
+  - "identity"
+  - "preferences.communication"
+assertions:
+  - hcp: "0.1"
+    id: "identity.example"
+    type: "identity"
+    source: "human"
+    authority: "authoritative"
+    status: "active"
+    visibility: "private"
+    body: "Illustrative assertion only."
+trust:
+  covenant: "HCP-0002"
+  status: "declared"
+  conditions:
+    training: false
+    derived_models: false
+    human_review: false
+    third_party_processing: false
+    resale: false
+    unauthorized_disclosure: false
+    profiling: false
+    manipulation: false

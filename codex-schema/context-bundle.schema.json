@@ -3,7 +3,7 @@
   "$id": "https://example.org/hcp/0.1/context-bundle.schema.json",
   "title": "HCP Context Bundle",
   "type": "object",
-  "required": ["hcp", "bundle_id", "codex_id", "purpose", "created", "scopes", "assertions"],
+  "required": ["hcp", "bundle_id", "codex_id", "purpose", "created", "scopes", "assertions", "trust"],
   "properties": {
     "hcp": {"type": "string"},
     "bundle_id": {"type": "string"},
@@ -13,7 +13,65 @@
     "expires": {"type": ["string", "null"], "format": "date-time"},
     "scopes": {"type": "array", "items": {"type": "string"}},
     "assertions": {"type": "array", "items": {"type": "object"}},
-    "integrity": {"type": "object"}
+    "integrity": {"type": "object"},
+    "trust": {
+      "type": "object",
+      "required": ["covenant", "status", "conditions"],
+      "properties": {
+        "covenant": {"const": "HCP-0002"},
+        "status": {
+          "const": "declared"
+        },
+        "conditions": {
+          "type": "object",
+          "properties": {
+            "training": {"type": "boolean"},
+            "derived_models": {"type": "boolean"},
+            "human_review": {"type": "boolean"},
+            "third_party_processing": {"type": "boolean"},
+            "resale": {"type": "boolean"},
+            "unauthorized_disclosure": {"type": "boolean"},
+            "profiling": {"type": "boolean"},
+            "manipulation": {"type": "boolean"}
+          },
+          "minProperties": 1,
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "trust_response": {
+      "description": "An optional receiving-system response recorded separately from the human declaration.",
+      "type": "object",
+      "required": ["acknowledged", "compatible", "guarantees", "limitations"],
+      "properties": {
+        "acknowledged": {"type": "boolean"},
+        "compatible": {"type": "boolean"},
+        "guarantees": {
+          "type": "object",
+          "properties": {
+            "training": {"type": "boolean"},
+            "derived_models": {"type": "boolean"},
+            "human_review": {"type": "boolean"},
+            "third_party_processing": {"type": "boolean"},
+            "resale": {"type": "boolean"},
+            "unauthorized_disclosure": {"type": "boolean"},
+            "profiling": {"type": "boolean"},
+            "manipulation": {"type": "boolean"}
+          },
+          "additionalProperties": false
+        },
+        "limitations": {"type": "array", "items": {"type": "string"}},
+        "responded_at": {"type": "string", "format": "date-time"}
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"compatible": {"const": true}}, "required": ["compatible"]},
+          "then": {"properties": {"acknowledged": {"const": true}}}
+        }
+      ],
+      "additionalProperties": false
+    }
   },
   "additionalProperties": true
 }
