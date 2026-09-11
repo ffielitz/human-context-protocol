@@ -3,6 +3,7 @@
 ## 0.1 Foundation
 
 - RFC
+- Human–AI Trust Covenant (HCP-0002)
 - repository layout
 - initial schemas
 - templates
@@ -27,6 +28,7 @@
 - MCP server
 - local model adapters
 - provider adapters
+- trust handshake and compatibility reporting
 
 ## 0.4 Security
 

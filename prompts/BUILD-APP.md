@@ -367,11 +367,19 @@ Generate a machine-readable bundle containing:
 - requested scopes
 - included assertions
 - integrity metadata placeholder
+- a required HCP-0002 `trust` declaration
 
 The bundle should be deterministic for identical input and configuration,
 apart from timestamps explicitly defined as dynamic.
 
 Do not include restricted assertions unless the scope explicitly authorizes them.
+
+The generator must create `trust.status: declared`; it must not fabricate an
+acknowledgement or compatibility outcome. Provider adapters may append a
+separate `trust_response` only after comparing their actual capabilities with
+every declared condition. If any condition cannot be guaranteed, report the
+limitation and `compatible: false`; never present an incompatible environment
+as compliant.
 
 ---
 
