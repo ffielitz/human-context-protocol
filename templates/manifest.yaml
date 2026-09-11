@@ -1,0 +1,22 @@
+hcp: "0.1"
+codex_id: "codex.example"
+title: "My Personal Codex"
+version: "0.1.0"
+
+created: "YYYY-MM-DD"
+updated: "YYYY-MM-DD"
+
+language: "en"
+timezone: "Europe/Berlin"
+
+schema:
+  assertion: "0.1"
+  bundle: "0.1"
+
+privacy:
+  default_visibility: "private"
+
+features:
+  temporal_assertions: true
+  ai_observations: true
+  selective_disclosure: true

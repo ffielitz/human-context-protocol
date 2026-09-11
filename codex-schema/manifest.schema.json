@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/hcp/0.1/manifest.schema.json",
+  "title": "HCP Codex Manifest",
+  "type": "object",
+  "required": ["hcp", "codex_id", "title", "version", "schema"],
+  "properties": {
+    "hcp": {"type": "string"},
+    "codex_id": {"type": "string", "minLength": 1},
+    "title": {"type": "string", "minLength": 1},
+    "version": {"type": "string", "minLength": 1},
+    "created": {"type": "string", "format": "date"},
+    "updated": {"type": "string", "format": "date"},
+    "language": {"type": "string"},
+    "timezone": {"type": "string"},
+    "schema": {
+      "type": "object",
+      "required": ["assertion", "bundle"],
+      "properties": {
+        "assertion": {"type": "string"},
+        "bundle": {"type": "string"}
+      },
+      "additionalProperties": false
+    },
+    "privacy": {
+      "type": "object",
+      "properties": {
+        "default_visibility": {
+          "type": "string",
+          "enum": ["public", "private", "sensitive", "restricted"]
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": true
+}

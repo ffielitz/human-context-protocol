@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/hcp/0.1/context-bundle.schema.json",
+  "title": "HCP Context Bundle",
+  "type": "object",
+  "required": ["hcp", "bundle_id", "codex_id", "purpose", "created", "scopes", "assertions"],
+  "properties": {
+    "hcp": {"type": "string"},
+    "bundle_id": {"type": "string"},
+    "codex_id": {"type": "string"},
+    "purpose": {"type": "string"},
+    "created": {"type": "string", "format": "date-time"},
+    "expires": {"type": ["string", "null"], "format": "date-time"},
+    "scopes": {"type": "array", "items": {"type": "string"}},
+    "assertions": {"type": "array", "items": {"type": "object"}},
+    "integrity": {"type": "object"}
+  },
+  "additionalProperties": true
+}

@@ -1,0 +1,13 @@
+hcp: "0.1"
+codex_id: "codex.example.minimal"
+title: "Minimal Example Codex"
+version: "0.1.0"
+created: "2026-09-11"
+updated: "2026-09-11"
+language: "en"
+timezone: "Europe/Berlin"
+schema:
+  assertion: "0.1"
+  bundle: "0.1"
+privacy:
+  default_visibility: "private"
