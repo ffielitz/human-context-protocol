@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HCP — Human Context Protocol</title>
+<meta name="description" content="One personal context. Every AI. An open protocol for portable, human-owned context.">
+<style>
+  :root{
+    --ink:#262a33;
+    --ink-soft:#5b6170;
+    --pink:#f3c6d3;
+    --lavender:#c9bde2;
+    --aqua:#a8e2da;
+    --peach:#f6dcbc;
+    --bg:#fdfcfa;
+    --card:#ffffff;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    color:var(--ink);
+    background:var(--bg);
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:760px;margin:0 auto;padding:0 24px}
+
+  /* hero */
+  header{
+    padding:96px 0 72px;
+    background:linear-gradient(135deg,#fdfcfa 0%,#fdfcfa 55%,#f7eef3 100%);
+    border-bottom:1px solid #f0ebe4;
+  }
+  .kicker{
+    display:inline-block;
+    font-size:12px;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--ink-soft);
+    border:1px solid #e6dfd4;border-radius:999px;
+    padding:6px 16px;margin-bottom:28px;
+    background:#fff;
+  }
+  h1{font-size:clamp(38px,6vw,56px);line-height:1.08;font-weight:800;letter-spacing:-.02em}
+  h1 .accent{
+    background:linear-gradient(90deg,var(--pink),var(--lavender) 35%,var(--aqua) 70%,var(--peach));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .tagline{font-size:20px;color:var(--ink-soft);margin-top:20px;max-width:560px}
+  .tagline strong{color:var(--ink)}
+  .hero-actions{margin-top:36px;display:flex;gap:14px;flex-wrap:wrap}
+  .btn{
+    display:inline-block;text-decoration:none;font-weight:600;font-size:15px;
+    padding:12px 26px;border-radius:10px;transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .btn:hover{transform:translateY(-2px)}
+  .btn-primary{background:var(--ink);color:#fff}
+  .btn-primary:hover{box-shadow:0 8px 20px rgba(38,42,51,.18)}
+  .btn-ghost{background:#fff;color:var(--ink);border:1px solid #e6dfd4}
+
+  /* sections */
+  section{padding:72px 0;border-bottom:1px solid #f0ebe4}
+  section:last-of-type{border-bottom:none}
+  h2{font-size:28px;font-weight:750;letter-spacing:-.01em;margin-bottom:18px}
+  h2 .dot{color:var(--lavender)}
+  p.lead{font-size:18px;color:var(--ink-soft);max-width:640px}
+  p{margin-bottom:14px;max-width:640px}
+  blockquote{
+    margin:24px 0;padding:18px 24px;border-left:3px solid var(--aqua);
+    background:#f4fbfa;border-radius:0 10px 10px 0;color:var(--ink);font-weight:500;
+    max-width:640px;
+  }
+  blockquote.pink{border-color:var(--pink);background:#fdf4f7}
+  blockquote.lav{border-color:var(--lavender);background:#f7f4fc}
+
+  /* cards */
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(158px,1fr));gap:16px;margin-top:28px}
+  .card{
+    background:var(--card);border:1px solid #efe9e0;border-radius:14px;padding:22px;
+  }
+  .card h3{font-size:15px;font-weight:700;margin-bottom:8px}
+  .card p{font-size:14px;color:var(--ink-soft);margin:0}
+  .swatch{width:28px;height:6px;border-radius:3px;margin-bottom:14px}
+
+  /* flow diagram */
+  .flow{margin:32px 0;display:flex;flex-direction:column;align-items:center;gap:0}
+  .flow .node{
+    background:#fff;border:1px solid #e6dfd4;border-radius:12px;padding:12px 28px;
+    font-weight:600;font-size:15px;text-align:center;min-width:260px;
+  }
+  .flow .node.human{background:#fdf4f7;border-color:var(--pink)}
+  .flow .node.codex{background:#f4fbfa;border-color:var(--aqua)}
+  .flow .node.ai{background:#f7f4fc;border-color:var(--lavender)}
+  .flow .node.review{background:#fdf8ef;border-color:var(--peach)}
+  .flow .arrow{color:#c9c2b6;font-size:18px;line-height:1;padding:6px 0}
+  .flow .cap{font-size:12px;color:var(--ink-soft);letter-spacing:.06em;text-transform:uppercase;padding:2px 0}
+  .flow-row{display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
+
+  /* principles */
+  ol.principles{counter-reset:p;list-style:none;margin-top:28px;display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px}
+  ol.principles li{
+    counter-increment:p;background:#fff;border:1px solid #efe9e0;border-radius:12px;
+    padding:16px 18px;font-size:14px;font-weight:600;position:relative;
+  }
+  ol.principles li::before{
+    content:counter(p,decimal-leading-zero);
+    display:block;font-size:11px;font-weight:700;letter-spacing:.12em;
+    color:var(--ink-soft);margin-bottom:6px;
+  }
+  ol.principles li:nth-child(4n+1)::before{color:#d78ba5}
+  ol.principles li:nth-child(4n+2)::before{color:#8f7fc0}
+  ol.principles li:nth-child(4n+3)::before{color:#4fae9f}
+  ol.principles li:nth-child(4n+4)::before{color:#d9a05e}
+
+  /* not-list */
+  ul.notlist{list-style:none;margin-top:20px;columns:2;column-gap:32px;max-width:640px}
+  ul.notlist li{padding:7px 0 7px 26px;position:relative;font-size:15px;color:var(--ink-soft);break-inside:avoid}
+  ul.notlist li::before{content:"×";position:absolute;left:0;top:6px;color:#d78ba5;font-weight:700}
+
+  /* status badge */
+  .status{
+    display:inline-flex;align-items:center;gap:10px;background:#fdf8ef;border:1px solid var(--peach);
+    border-radius:999px;padding:8px 18px;font-size:14px;font-weight:600;margin-bottom:20px;
+  }
+  .status .pulse{width:8px;height:8px;border-radius:50%;background:#d9a05e}
+
+  code{background:#f4f1ea;border-radius:5px;padding:2px 7px;font-size:.9em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+
+  footer{padding:56px 0 72px;text-align:center;color:var(--ink-soft);font-size:14px}
+  footer a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--lavender)}
+  .pastel-strip{display:flex;height:5px;margin-top:36px;border-radius:3px;overflow:hidden;max-width:320px;margin-left:auto;margin-right:auto}
+  .pastel-strip span{flex:1}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <span class="kicker">Open protocol · experimental</span>
+    <h1>Human Context<br>Protocol <span class="accent">(HCP)</span></h1>
+    <p class="tagline"><strong>One personal context. Every AI.</strong><br>
+    Your context. Your authority.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="https://github.com/ffielitz/human-context-protocol">View on GitHub</a>
+      <a class="btn btn-ghost" href="#idea">The idea</a>
+    </div>
+  </div>
+</header>
+
+<section id="idea">
+  <div class="wrap">
+    <h2>The problem<span class="dot">.</span></h2>
+    <p class="lead">An AI can be extremely capable and still know almost nothing about the person it is helping. Every assistant builds its own partial model of you — locked behind a provider's account, memory system, or chat history. Switching models can mean starting over.</p>
+    <blockquote>Existing memory systems ask: “What should the AI remember about this user?”</blockquote>
+    <blockquote class="lav">HCP starts from the opposite question: “What does this human choose to make available to AI systems?”</blockquote>
+    <p>That distinction is the foundation of the project.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>The core model<span class="dot">.</span></h2>
+    <p class="lead">A portable, human-owned context layer — the <strong>Personal Codex</strong> — that can move between ChatGPT, Claude, Gemini, local models, agents, and future AI systems.</p>
+
+    <div class="flow">
+      <div class="node human">Human / Life</div>
+      <div class="arrow">↓</div>
+      <div class="node codex">Personal Codex<br><span style="font-weight:400;font-size:13px;color:var(--ink-soft)">Markdown + YAML · Git history · human authority</span></div>
+      <div class="cap">selective disclosure</div>
+      <div class="arrow">↓</div>
+      <div class="flow-row">
+        <div class="node ai">ChatGPT</div>
+        <div class="node ai">Claude</div>
+        <div class="node ai">Local Agent</div>
+      </div>
+      <div class="cap">AI observations / proposals</div>
+      <div class="arrow">↓</div>
+      <div class="node review">Human review<br><span style="font-weight:400;font-size:13px;color:var(--ink-soft)">accept · edit · reject · archive</span></div>
+    </div>
+
+    <p>The first implementation is deliberately boring where it should be boring: Markdown for readability, YAML for structure, Git for history and rollback, JSON for machine interchange, local-first storage.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>More than “memory”<span class="dot">.</span></h2>
+    <p class="lead">A Codex holds typed assertions — because “what is true”, “what I believe”, “what I prefer”, and “what an AI inferred” are not the same thing.</p>
+    <div class="grid">
+      <div class="card"><div class="swatch" style="background:var(--pink)"></div><h3>facts &amp; identity</h3><p>“I work primarily from Berlin.” Human-authored, authoritative.</p></div>
+      <div class="card"><div class="swatch" style="background:var(--lavender)"></div><h3>beliefs, values, principles</h3><p>“AI systems should preserve human agency.” Stated, not inferred.</p></div>
+      <div class="card"><div class="swatch" style="background:var(--aqua)"></div><h3>preferences &amp; boundaries</h3><p>“I prefer direct, structured communication.” With explicit limits.</p></div>
+      <div class="card"><div class="swatch" style="background:var(--peach)"></div><h3>goals &amp; observations</h3><p>AI inferences stay <em>proposed</em> until a human reviews them.</p></div>
+    </div>
+    <blockquote class="pink" style="margin-top:28px">The most important rule in HCP: an AI may propose an observation about a person. It may not silently redefine the person.</blockquote>
+    <p>People change, so time is a first-class property: an old assertion is <em>superseded by</em> a current one, and Git preserves the history. The Codex becomes a versioned record of an evolving human point of view — not a static profile.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Selective disclosure<span class="dot">.</span></h2>
+    <p class="lead">A Codex can hold sensitive information. It should never be necessary to expose all of it to every AI system.</p>
+    <p>Context is organised into <code>public</code>, <code>private</code>, <code>sensitive</code> and <code>restricted</code> layers. Each AI receives a scoped <strong>Context Bundle</strong>: a restaurant assistant gets food and communication preferences; a career assistant gets professional identity and goals. Every bundle carries explicit trust conditions — no training, no resale, no profiling — and receivers must disclose honestly when they cannot honour them, instead of turning an incompatible covenant into false assurance.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Design principles<span class="dot">.</span></h2>
+    <ol class="principles">
+      <li>Human ownership</li>
+      <li>Human readability</li>
+      <li>Machine interoperability</li>
+      <li>Explicit authority</li>
+      <li>Temporal awareness</li>
+      <li>Selective disclosure</li>
+      <li>Privacy by architecture</li>
+      <li>Provider independence</li>
+      <li>Auditability</li>
+      <li>Reversibility</li>
+      <li>Extensibility</li>
+      <li>No silent identity mutation</li>
+    </ol>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>What HCP is not<span class="dot">.</span></h2>
+    <ul class="notlist">
+      <li>an AI model or chatbot</li>
+      <li>a proprietary memory database</li>
+      <li>a personality test or diagnosis</li>
+      <li>a digital clone</li>
+      <li>a social network</li>
+      <li>a blockchain requirement</li>
+      <li>a password manager</li>
+      <li>a place for keys, passwords or secrets</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Current status<span class="dot">.</span></h2>
+    <div class="status"><span class="pulse"></span>Experimental / pre-alpha</div>
+    <p>HCP is a proposed protocol, not an established standard. This repository makes the idea concrete enough to implement, test, challenge, and improve. The initial target is a local-first CLI and library: create a Codex, validate it, track changes with Git, generate selective context bundles, import AI observations, and review them — with provenance and history preserved.</p>
+    <p>The long-term vision is a <strong>human context layer for the AI ecosystem</strong>: providers will keep competing on models, agents and products. Your context should not have to compete with them.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p><a href="https://github.com/ffielitz/human-context-protocol">github.com/ffielitz/human-context-protocol</a></p>
+    <div class="pastel-strip">
+      <span style="background:var(--pink)"></span>
+      <span style="background:var(--lavender)"></span>
+      <span style="background:var(--aqua)"></span>
+      <span style="background:var(--peach)"></span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
