@@ -29,6 +29,26 @@ The first implementation is deliberately boring where it should be boring:
 
 HCP is not intended to become another proprietary memory silo. The protocol should remain useful even if the company or project behind it disappears.
 
+## Reference implementation
+
+A working CLI lives in [`app/`](app/). It turns a Codex into something you can
+actually use today:
+
+```bash
+cd app
+make install
+
+hcp init ~/my-codex
+hcp add ~/my-codex --type value --title "Intellectual honesty"
+hcp validate ~/my-codex
+hcp bundle ~/my-codex --scope assistant --purpose "Personal assistance"
+```
+
+It is local-first: Markdown + YAML + Git, no database, no account, and no
+network access in any core command. See [`app/README.md`](app/README.md) for
+the full command set and [`app/DEVELOPING.md`](app/DEVELOPING.md) for the
+architecture and design decisions.
+
 ## The problem
 
 An AI can be extremely capable and still know almost nothing about the person it is helping.
